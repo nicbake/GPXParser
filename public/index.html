@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GPS Data Viewer</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="This is A3">
+        <meta name="keywords" content="GPX">
+        <meta name="author" content="Nicholas Baker">
+        <!-- Load jquery, bootstrap -->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        <!-- Custom CSS -->
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- Custom CSS End -->
+    </head>
+    <body>
+        <table id="mainT">
+            <tr id="banner">
+                <td>
+                    <h1>GPS Data Viewer</h1>
+                </td>
+            </tr>
+            <tr id="Login">
+                <td>
+                    <form ref='login' id='login'>
+                        <div class="form-group">
+                            <label>Login</label>
+                            <input type="text" class="form-control" id="loginUser" placeholder="Username">
+                            <input type="text" class="form-control" id="loginPass" placeholder="Password">
+                            <input type="text" class="form-control" id="loginServ" placeholder="dataBase">
+                            <label id='sucsess6'></label>
+                        </div>
+                        <div class="form-group">
+                            <input type='submit' class="btn btn-secondary">
+                        </div>
+                    </form>
+                </td>
+            </tr>
+            <tr id="content">
+                <td>
+                    <div class="paragraphs">
+                        <h2>Assignment 4</h2>
+                        <hr>
+                        <h3>DataBase Functions</h3>
+                        <hr>
+                        <button type="button" id="Store">Store all files</button> 
+                        <button type="button" id="Clear">Clear all data</button>
+                        <button type="button" id="Status">Display DB status</button>
+                        <label id='sucsess7'></label>
+                        <h3>Queries</h3>
+                        <hr>
+                        <h4>All Routes</h4>
+                        <form ref='Routes' id='Routes'>
+                            <div class="form-group">
+                                <select id="selector7">
+                                    <option value='0'>Select sort option</option>
+                                    <option value='name'>Sort by name</option>
+                                    <option value='length'>Sort by length</option>
+                                </select>
+                                <table id="info6">
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <h4>File specific routes</h4>
+                        <form ref='FileRoutes' id='FileRoutes'>
+                            <div class="form-group">
+                                <select id="selector8">
+                                    <option value='0'>Select GPX</option>
+                                </select>
+                                <select id="selector9">
+                                    <option value='0'>Select sort option</option>
+                                    <option value='name'>Sort by name</option>
+                                    <option value='length'>Sort by length</option>
+                                </select>
+                                <table id="info7">
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+
+                        <h4>Route specific points</h4>
+                        <form ref='Routepoints' id='Routepoints'>
+                            <div class="form-group">
+                                <select id="selector10">
+                                    <option value='0'>Select Route</option>
+                                </select>
+                                <table id="info8">
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+
+                        <h4>File specific points</h4>
+                        <form ref='FilePoints' id='FilePoints'>
+                            <div class="form-group">
+                                <select id="selector11">
+                                    <option value='0'>Select GPX</option>
+                                </select>
+                                <select id="selector12">
+                                    <option value='0'>Select sort option</option>
+                                    <option value='name'>Sort by name</option>
+                                    <option value='length'>Sort by length</option>
+                                </select>
+                                <table id="info9">
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+
+                        <h4>File Shortest or longest</h4>
+                        <form ref='Shortest' id='Shortest'>
+                            <div class="form-group">
+                                <select id="selector13">
+                                    <option value='0'>Select GPX</option>
+                                </select>
+                                <select id="selector14">
+                                    <option value='0'>Select sort option</option>
+                                    <option value='short'>Shortest</option>
+                                    <option value='long'>Longest</option>
+                                </select>
+                                <input type="text" class="form-control" id="entryBox14" placeholder="Enter the number of routes">
+                                <table id="info10">
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+
+                        <h2>Assignment 3</h2>
+                        <hr>
+                        <h3>File log</h3>
+                        <hr>
+                        <table id="info1">
+                            <tr id="info">
+                                <th>file name (click to download)</th>
+                                <th>Version</th>
+                                <th>Creator</th>
+                                <th>Number of waypoints</th>
+                                <th>Number of routes</th>
+                                <th>Number of tracks</th>
+                            </tr>
+                        </table>
+                        <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+                            <div class="form-group">
+                                <input type="file" name="uploadFile" class="btn btn-secondary">
+                                <input type='submit' value='Upload' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <h3>GPX View</h3>
+                        <hr>
+                        <select id="selector">
+                            <option value='0'>Select GPX</option>
+                        </select>
+                        <table id="info2">
+                            <tr id="info">
+                                <th>Component</th>
+                                <th>Name</th>
+                                <th>Number of points</th>
+                                <th>Length</th>
+                                <th>Loop</th>
+                            </tr>
+                        </table>
+                        <h3>Show other data</h3>
+                        <hr>
+                        <select id="selector2">
+                            <option value='0'>Select Route or Track</option>
+                        </select>
+                        <table id="info3">
+                            <tr id="info">
+                                <th>Name</th>
+                                <th>Value</th>
+                            </tr>
+                        </table>
+                        <h3>Rename</h3>
+                        <hr>
+                        <form ref='someform' id='someform'>
+                            <div class="form-group">
+                                <select id="selector3">
+                                    <option value='0'>Select Route or Track</option>
+                                </select>
+                                <input type="text" class="form-control" id="entryBox" placeholder="New name">
+                                <label id='sucsess'></label>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <h3>Create GPX</h3>
+                        <hr>
+                        <form ref='gpxform' id='gpxform'>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="entryBox2" placeholder="Name of file 'Example: filename.gpx'">
+                                <input type="text" class="form-control" id="entryBox3" placeholder="Name of Creator">
+                                <label id='sucsess2'></label>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <h3>Create Route</h3>
+                        <hr>
+                        <form ref='routeform' id='routeform'>
+                            <div class="form-group">
+                                <select id="selector4">
+                                    <option value='0'>Select GPX</option>
+                                </select>
+                                <input type="text" class="form-control" id="entryBox4" placeholder="Name of Route">
+                                <label id='sucsess3'></label>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <h3>Add Waypoint</h3>
+                        <hr>
+                        <form ref='wayPointform' id='wayPointform'>
+                            <div class="form-group">
+                                <select id="selector5">
+                                    <option value='0'>Select GPX</option>
+                                </select>
+                                <select id="selector6">
+                                    <option value='0'>Select Route</option>
+                                </select>
+                                <input type="text" class="form-control" id="entryBox5" placeholder="Enter the latitude">
+                                <input type="text" class="form-control" id="entryBox6" placeholder="Enter the longitude">
+                                <label id='sucsess4'></label>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <h3>Find path Between</h3>
+                        <hr>
+                        <form ref='Between' id='Between'>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="entryBox7" placeholder="Enter the source latitude">
+                                <input type="text" class="form-control" id="entryBox8" placeholder="Enter the source longitude">
+                                <input type="text" class="form-control" id="entryBox9" placeholder="Enter the destination latitude">
+                                <input type="text" class="form-control" id="entryBox10" placeholder="Enter the destination longitude">
+                                <input type="text" class="form-control" id="entryBox11" placeholder="Enter the Tolerance">
+                                <label id='sucsess5'></label>
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <table id="info4">
+                            <tr id="info">
+                                <th>File</th>
+                                <th>Name</th>
+                                <th>Number of points</th>
+                                <th>Length</th>
+                                <th>Loop</th>
+                            </tr>
+                        </table>
+                        <h3>Find path with Length</h3>
+                        <hr>
+                        <form ref='Length' id='Length'>
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="entryBox12" placeholder="Enter the Length">
+                                <input type="text" class="form-control" id="entryBox13" placeholder="Enter the Tolerance">
+                            </div>
+                            <div class="form-group">
+                                <input type='submit' class="btn btn-secondary">
+                            </div>
+                        </form>
+                        <table id="info5">
+                            <tr id="info">
+                                <th>Components</th>
+                                <th>Number</th>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr id="footer">
+                <td>
+                    <div class="foot">
+                        <h4>Contact info</h4>
+                        <p>
+                            ID  #: <em>1100494</em><br>
+                            Email: <em>nbaker05@uoguelph.ca</em>
+                        </p>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <!-- Leave me at the bottom of body -->
+        <script src="/index.js"></script>
+    </body>
+</html>
+
+
+
+
+
+
+
